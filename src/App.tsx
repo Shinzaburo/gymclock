@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container } from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import React from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Header from "./common/Header";
+import Calendar from "./pages/Calender/Calender";
+import TimeRecord from "./pages/TimeRecord/TimeRecord";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Router>
+        <Header />
+        <Container maxWidth="sm" sx={{ mt: 5 }}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <TimeRecord />
+                </>
+              }
+            />
+            <Route path="/calendar" element={<Calendar />} />
+          </Routes>
+        </Container>
+      </Router>
+    </LocalizationProvider>
   );
-}
+};
 
 export default App;
