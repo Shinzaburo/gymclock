@@ -1,7 +1,9 @@
 import { faDoorClosed, faDoorOpen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box, Button, Stack, Typography } from "@mui/material";
+import dayjs from "dayjs";
 import React, { useState } from "react";
+import { useMenuStore } from "../../store/menuStore";
 
 const formatTime = (date: Date) => {
   const pad = (n: number) => n.toString().padStart(2, "0");
@@ -17,6 +19,8 @@ const formatDuration = (ms: number) => {
 };
 
 const TimeRecord: React.FC = () => {
+  const recordTodayMenu = useMenuStore((state) => state.recordTodayMenu);
+
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [endTime, setEndTime] = useState<Date | null>(null);
   const [duration, setDuration] = useState<string | null>(null);
@@ -26,6 +30,10 @@ const TimeRecord: React.FC = () => {
     setStartTime(now);
     setEndTime(null);
     setDuration(null);
+
+    // 今日の日付キーで履歴を保存
+    const dateKey = dayjs(now).format("YYYY-MM-DD");
+    recordTodayMenu(dateKey);
   };
 
   const handleEnd = () => {

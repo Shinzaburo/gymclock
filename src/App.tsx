@@ -8,6 +8,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Header from "./common/Header";
 import Calendar from "./pages/Calender/Calender";
 import TimeRecord from "./pages/TimeRecord/TimeRecord";
+import TrainingMenu from "./pages/TrainingMenu/TrainingMenu";
 import theme from "./theme/theme";
 
 const App: React.FC = () => {
@@ -21,6 +22,7 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<TimeRecord />} />
               <Route path="/calendar" element={<Calendar />} />
+              <Route path="/training" element={<TrainingMenu />} />
             </Routes>
           </Container>
         </Router>

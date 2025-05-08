@@ -1,6 +1,7 @@
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CalendarMonthSharpIcon from "@mui/icons-material/CalendarMonthSharp";
-import CloseIcon from "@mui/icons-material/Close"; // ← 追加
+import CloseIcon from "@mui/icons-material/Close";
+import FitnessCenterSharpIcon from "@mui/icons-material/FitnessCenterSharp";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
@@ -77,6 +78,12 @@ const Header: React.FC = () => {
                 <ListItemButton component={RouterLink} to="/calendar">
                   <CalendarMonthSharpIcon sx={{ mr: 1.5 }} />
                   <ListItemText primary="活動履歴" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton component={RouterLink} to="/training">
+                  <FitnessCenterSharpIcon sx={{ mr: 1.5 }} />
+                  <ListItemText primary="トレーニング管理" />
                 </ListItemButton>
               </ListItem>
             </List>
