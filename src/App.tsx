@@ -14,14 +14,7 @@ const App: React.FC = () => {
         <Header />
         <Container maxWidth="sm" sx={{ mt: 5 }}>
           <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <TimeRecord />
-                </>
-              }
-            />
+            <Route path="/" element={<TimeRecord />} />
             <Route path="/calendar" element={<Calendar />} />
           </Routes>
         </Container>

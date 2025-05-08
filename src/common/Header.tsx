@@ -2,9 +2,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
   Box,
+  Drawer,
   IconButton,
-  Menu,
-  MenuItem,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -12,15 +15,10 @@ import React, { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 
 const Header: React.FC = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
+  const toggleDrawer = (open: boolean) => () => {
+    setDrawerOpen(open);
   };
 
   return (
@@ -32,7 +30,7 @@ const Header: React.FC = () => {
           edge="start"
           color="inherit"
           aria-label="menu"
-          onClick={handleMenu}
+          onClick={toggleDrawer(true)}
           sx={{ mr: 1 }}
         >
           <MenuIcon />
@@ -50,15 +48,28 @@ const Header: React.FC = () => {
           </Typography>
         </Box>
 
-        {/* メニュー（仮） */}
-        <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-          <MenuItem onClick={handleClose} component={RouterLink} to="/">
-            入退館記録
-          </MenuItem>
-          <MenuItem onClick={handleClose} component={RouterLink} to="/calendar">
-            カレンダー
-          </MenuItem>
-        </Menu>
+        {/* Drawer（サイドメニュー） */}
+        <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+          <Box
+            sx={{ width: 250 }}
+            role="presentation"
+            onClick={toggleDrawer(false)}
+            onKeyDown={toggleDrawer(false)}
+          >
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton component={RouterLink} to="/">
+                  <ListItemText primary="入退館記録" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton component={RouterLink} to="/calendar">
+                  <ListItemText primary="カレンダー" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Box>
+        </Drawer>
       </Toolbar>
     </AppBar>
   );
