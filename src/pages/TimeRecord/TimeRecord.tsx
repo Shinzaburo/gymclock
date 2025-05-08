@@ -2,18 +2,18 @@ import { faDoorClosed, faDoorOpen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
+
 const formatTime = (date: Date) => {
   const pad = (n: number) => n.toString().padStart(2, "0");
-  return `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+  return `${pad(date.getHours())}:${pad(date.getMinutes())}`;
 };
 
 const formatDuration = (ms: number) => {
-  const totalSeconds = Math.floor(ms / 1000);
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
+  const totalMinutes = Math.floor(ms / 60000);
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
   const pad = (n: number) => n.toString().padStart(2, "0");
-  return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  return `${pad(hours)}:${pad(minutes)}`;
 };
 
 const TimeRecord: React.FC = () => {
