@@ -1,6 +1,7 @@
+import { faDoorClosed, faDoorOpen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
-
 const formatTime = (date: Date) => {
   const pad = (n: number) => n.toString().padStart(2, "0");
   return `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
@@ -47,6 +48,7 @@ const TimeRecord: React.FC = () => {
           color="success"
           onClick={handleStart}
           sx={{ width: 120, height: 120, fontSize: "1.2rem" }}
+          endIcon={<FontAwesomeIcon icon={faDoorOpen} />}
         >
           開始
         </Button>
@@ -55,6 +57,7 @@ const TimeRecord: React.FC = () => {
           color="error"
           onClick={handleEnd}
           sx={{ width: 120, height: 120, fontSize: "1.2rem" }}
+          endIcon={<FontAwesomeIcon icon={faDoorClosed} />}
         >
           終了
         </Button>

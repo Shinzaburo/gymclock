@@ -1,3 +1,6 @@
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import CalendarMonthSharpIcon from "@mui/icons-material/CalendarMonthSharp";
+import CloseIcon from "@mui/icons-material/Close"; // ← 追加
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
@@ -50,21 +53,30 @@ const Header: React.FC = () => {
 
         {/* Drawer（サイドメニュー） */}
         <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-          <Box
-            sx={{ width: 250 }}
-            role="presentation"
-            onClick={toggleDrawer(false)}
-            onKeyDown={toggleDrawer(false)}
-          >
-            <List>
+          <Box sx={{ width: 250 }} role="presentation" onKeyDown={toggleDrawer(false)}>
+            {/* 閉じるボタン */}
+            <Box
+              display="flex"
+              justifyContent="flex-end"
+              p={1}
+              borderBottom="1px solid #ddd"
+            >
+              <IconButton onClick={toggleDrawer(false)}>
+                <CloseIcon />
+              </IconButton>
+            </Box>
+
+            <List onClick={toggleDrawer(false)}>
               <ListItem disablePadding>
                 <ListItemButton component={RouterLink} to="/">
+                  <AccessTimeIcon sx={{ mr: 1.5 }} />
                   <ListItemText primary="入退館記録" />
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
                 <ListItemButton component={RouterLink} to="/calendar">
-                  <ListItemText primary="カレンダー" />
+                  <CalendarMonthSharpIcon sx={{ mr: 1.5 }} />
+                  <ListItemText primary="活動履歴" />
                 </ListItemButton>
               </ListItem>
             </List>
